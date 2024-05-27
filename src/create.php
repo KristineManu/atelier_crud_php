@@ -1,4 +1,9 @@
 <?php
+
+//on demarre une session
+session_start();
+
+
 if( 
     isset($_POST["first_name"]) && !empty($_POST["first_name"])
     && isset($_POST["last_name"]) && !empty($_POST["last_name"])
@@ -20,7 +25,10 @@ $query->bindValue(":last_name",$last_name);
 
 $query->execute();
 
+$_SESSION["message"] = "Utilisateur ajouté(e)";
+
 header("location: index.php");
 } else{
     echo "Veuiller remplir le formulaire";
 }
+

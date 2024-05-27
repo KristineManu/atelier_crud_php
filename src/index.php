@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("connect.php");
 
 
@@ -27,6 +28,13 @@ echo "</pre>";
 </head>
 <body>
    <h1>Liste des utilisateurs</h1>
+   <?php
+   if(!empty($_SESSION["message"])){
+   echo "<p>" . $_SESSION["message"] . "</p>"; $_SESSION["message"];
+   $_SESSION["message"]="";
+   }
+   ?>
+
    <table>
     <thead>
         <td>id</td>
@@ -48,7 +56,9 @@ echo "</pre>";
     <td> <?= $user["last_name"]?></td>
     <td>
         <a href="user.php?id=<?= $user["id"]?>">Voir</a>
+        <a href="update.php?id=<?= $user["id"]?>">Modifier</a>
         <a href="delete.php?id=<?= $user["id"]?>">Suprimer</a>
+
     </td>
  </tr>
     <?php
